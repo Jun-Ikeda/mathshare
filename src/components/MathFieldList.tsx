@@ -5,14 +5,28 @@ import MathField from './MathField.tsx';
 
 import './MathFieldList.css';
 
-// function renderList(latexList, setLatexList) {
-//   // let ref = React.createRef();
-//   return ;
-// }
+const moveDown = (mathFieldList, index) => {
+  // console.log(mathFieldList);
+  if (index === mathFieldList.length - 1) {
+    console.log('last');
+  } else {
+    mathFieldList[index + 1].focus();
+    mathFieldList[index + 1].moveToLeftEnd();
+  }
+};
+
+const moveUp = (mathFieldList, index) => {
+  // console.log(mathFieldList);
+  if (index === 0) {
+    console.log('first');
+  } else {
+    mathFieldList[index - 1].focus();
+    mathFieldList[index - 1].moveToRightEnd();
+  }
+};
 
 function MathFieldList({ latexList, setLatexList }) {
-  // const [mathFieldList, setMathFieldList] = useState([]);
-  let mathFieldList = [];
+  const mathFieldList = [];
   return (
     <div className="MathFieldList-div">
       {latexList.map((latex, index) => (
@@ -26,42 +40,21 @@ function MathFieldList({ latexList, setLatexList }) {
           })}
           mathquillDidMount={(mathField) => {
             if (mathFieldList.every((element) => mathField.id !== element.id)) {
-              const copyMathFieldList = [...mathFieldList];
-              copyMathFieldList[index] = mathField;
-              for (let i = index + 1; i < copyMathFieldList.length + 1; i += 1) {
-                copyMathFieldList[i] = mathFieldList[i - 1];
-              }
-              mathFieldList = copyMathFieldList;
-              // mathFieldList.push(mathField);
-              mathField.focus();
+              mathFieldList.push(mathField);
             }
           }}
           config={{
             handlers: {
-              moveOutOf: (direction) => {
-                if (direction === 1) {
-                  // console.log(index, latexList.length - 1, index === latexList.length - 1);
-                  if (index === latexList.length - 1) {
-                    setLatexList((prevLatexList) => [...prevLatexList, '']);
-                  } else {
-                    mathFieldList[index + 1].focus();
-                    mathFieldList[index + 1].moveToLeftEnd();
-                  }
-                } else if (direction === -1) {
-                  if (index === 0) {
-                    setLatexList((prevLatexList) => ['', ...prevLatexList]);
-                  } else {
-                    mathFieldList[index - 1].focus();
-                    mathFieldList[index - 1].moveToRightEnd();
-                  }
-                }
-              },
-
+              moveOutOf: (direction) => ((direction === 1)
+                ? moveDown(mathFieldList, index)
+                : moveUp(mathFieldList, index)),
+              downOutOf: () => moveDown(mathFieldList, index),
+              upOutOf: () => moveUp(mathFieldList, index),
+              enter: () => moveDown(mathFieldList, index),
             },
           }}
         />
       ))}
-      <button type="button" onClick={() => console.log(mathFieldList)}>Add</button>
     </div>
   );
 }

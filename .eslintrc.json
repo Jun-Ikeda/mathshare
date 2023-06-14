@@ -11,6 +11,7 @@
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "react/require-default-props": "warn",
-        "react/no-array-index-key": "warn"
+        "react/no-array-index-key": "warn",
+        "max-len": ["error", { "code": 500 }]
     }
 }

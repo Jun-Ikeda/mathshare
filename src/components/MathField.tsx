@@ -19,14 +19,6 @@ function MathField({
     sumStartsWithNEquals: true,
     autoCommands,
     autoOperatorNames,
-    // handlers: {
-    //   moveOutOf: (direction, mathField) => console.log(direction, mathField),
-    //   downOutOf: (mathField) => console.log('down', mathField),
-    //   upOutOf: (mathField) => console.log('up', mathField),
-    //   deleteOutOf: (direction, mathField) => console.log(direction, mathField),
-    //   selectOutOf: (direction, mathField) => console.log(direction, mathField),
-    //   enter: (mathField) => console.log(mathField),
-    // },
   };
   const mergedConfig = { ...defaultConfig, ...config };
 
@@ -71,7 +63,6 @@ const configPropType = PropTypes.shape({
 });
 
 MathField.propTypes = {
-  // defaultLatex: PropTypes.string.isRequired,
   config: configPropType,
   latex: PropTypes.string.isRequired,
   setLatex: PropTypes.func.isRequired,
