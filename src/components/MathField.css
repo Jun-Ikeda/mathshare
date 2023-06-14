@@ -1,0 +1,22 @@
+.MathField-div {
+  color: white;
+  /* border-color: aquamarine; */
+  /* border-width: 1px; */
+  /* background-color: blue; */
+  /* background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100em;
+  font-size: calc(200px + 2vmin);
+  color: white; */
+}
+
+.MathField-EditableMathField {
+  color: white;
+  border-color: white;
+  /* background-color: brown; */
+}
+  
