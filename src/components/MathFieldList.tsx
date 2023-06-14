@@ -6,20 +6,14 @@ import MathField from './MathField.tsx';
 import './MathFieldList.css';
 
 const moveDown = (mathFieldList, index) => {
-  // console.log(mathFieldList);
-  if (index === mathFieldList.length - 1) {
-    console.log('last');
-  } else {
+  if (index !== mathFieldList.length - 1) {
     mathFieldList[index + 1].focus();
     mathFieldList[index + 1].moveToLeftEnd();
   }
 };
 
 const moveUp = (mathFieldList, index) => {
-  // console.log(mathFieldList);
-  if (index === 0) {
-    console.log('first');
-  } else {
+  if (index !== 0) {
     mathFieldList[index - 1].focus();
     mathFieldList[index - 1].moveToRightEnd();
   }

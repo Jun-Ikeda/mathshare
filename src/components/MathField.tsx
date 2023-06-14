@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addStyles, EditableMathField } from 'react-mathquill';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { MdContentCopy } from 'react-icons/md';
 
 import './MathField.css';
 
@@ -24,6 +26,11 @@ function MathField({
 
   return (
     <div className="MathField-div">
+      <CopyToClipboard text={latex}>
+        <button type="button" className="MathField-copyButton">
+          <MdContentCopy fontSize={20} color="#d4d4d4" />
+        </button>
+      </CopyToClipboard>
       <EditableMathField
         className="MathField-EditableMathField"
         latex={latex}

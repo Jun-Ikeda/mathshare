@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mathshare/static/css/main.1c740e4a.css",
-    "main.js": "/mathshare/static/js/main.cdfed593.js",
+    "main.css": "/mathshare/static/css/main.ffa0356f.css",
+    "main.js": "/mathshare/static/js/main.2e69a094.js",
     "static/js/787.a0aab3d3.chunk.js": "/mathshare/static/js/787.a0aab3d3.chunk.js",
     "index.html": "/mathshare/index.html",
-    "main.1c740e4a.css.map": "/mathshare/static/css/main.1c740e4a.css.map",
-    "main.cdfed593.js.map": "/mathshare/static/js/main.cdfed593.js.map",
+    "main.ffa0356f.css.map": "/mathshare/static/css/main.ffa0356f.css.map",
+    "main.2e69a094.js.map": "/mathshare/static/js/main.2e69a094.js.map",
     "787.a0aab3d3.chunk.js.map": "/mathshare/static/js/787.a0aab3d3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1c740e4a.css",
-    "static/js/main.cdfed593.js"
+    "static/css/main.ffa0356f.css",
+    "static/js/main.2e69a094.js"
   ]
 }

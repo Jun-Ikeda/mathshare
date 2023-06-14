@@ -1,5 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { MdShare } from 'react-icons/md';
 
 import MathFieldList from './MathFieldList.tsx';
 
@@ -80,7 +82,6 @@ const translateBackLatexList = (latexList) => {
   const lastIndex = latexList.length - [...latexList].reverse().findIndex((item) => item !== '') - 1;
   const nonEmptyLatexList = latexList.slice(0, lastIndex + 1);
   const latex = nonEmptyLatexList.join('\\n');
-  console.log(lastIndex, nonEmptyLatexList, latex);
   const expression = translateExpressionBack(latex);
   return expression;
 };
@@ -114,37 +115,23 @@ function Main() {
       ? expressionArray.concat(Array(100 - expressionArray.length).fill(''))
       : expressionArray.slice(0, 100);
     if (!compareArray(latexList, expressionArray100)) {
-      console.log(latexList, expressionArray100, latexList === expressionArray100);
       setLatexList(expressionArray100);
     }
   }, []);
-  const copyToClipboard = async (url) => {
-    if (!navigator.clipboard) {
-      alert('This browser does not support clipboard. Please copy manually.');
-      return;
-    }
-    navigator.clipboard.writeText(url).then(
-      () => {
-        alert('Link copied to clipboard.');
-      },
-      (e) => {
-        alert('Failed to copy link to clipboard. Please copy manually.');
-        console.log(e);
-      },
-    );
-  };
   return (
     <div className="Main-div">
-      <button
-        type="button"
-        onClick={() => {
-          const url = mainURL + translateBackLatexList(latexList);
-          window.location.replace(url);
-          copyToClipboard(url);
-        }}
-      >
-        console
-      </button>
+      <CopyToClipboard text={mainURL + translateBackLatexList(latexList)}>
+        <button
+          type="button"
+          className="Main-sharebutton"
+          onClick={() => {
+            window.location.replace(mainURL + translateBackLatexList(latexList));
+            alert('Link copied to clipboard');
+          }}
+        >
+          <MdShare fontSize={30} color="#d4d4d4" />
+        </button>
+      </CopyToClipboard>
       <MathFieldList latexList={latexList} setLatexList={setLatexList} />
     </div>
   );

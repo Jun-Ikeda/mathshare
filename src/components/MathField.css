@@ -1,8 +1,12 @@
 .MathField-div {
   color: white;
-  /* border-color: aquamarine; */
-  /* border-width: 1px; */
-  /* background-color: blue; */
+  /* border-color: aquamarine;
+  border-width: 1px;
+  border-style: solid;
+  background-color: blue; */
+  display: flex;
+  /* align-items: stretch; */
+  align-content: space-between;
   /* background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -18,5 +22,12 @@
   color: white;
   border-color: white;
   /* background-color: brown; */
+}
+
+.MathField-copyButton {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
   
