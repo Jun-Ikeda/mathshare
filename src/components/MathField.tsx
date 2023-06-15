@@ -16,7 +16,7 @@ function MathField({
   latex, setLatex, config = {}, mathquillDidMount,
 }) {
   const defaultConfig = {
-    spaceBehavesLikeTab: true,
+    // spaceBehavesLikeTab: true,
     supSubsRequireOperand: true,
     sumStartsWithNEquals: true,
     autoCommands,
