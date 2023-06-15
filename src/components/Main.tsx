@@ -14,7 +14,8 @@ const translateExpression = (expression) => {
   // ^ -> !CARET!, < -> !LT!, > -> !GT!, # -> !SHARP!, % -> !PERCENT!, " -> !DQUOTE!
   // | -> !BAR!, ` -> !BQUOTE!, : -> !COLON!, ? -> !QMARK!, / -> !SLASH!, @ -> !AT!
   // $ -> !DOLLAR!, & -> !AMP!, ~ -> !TILDE!, = -> !EQ!, + -> !PLUS!, - -> !MINUS!
-  // * -> !STAR!, _ -> !UNDER!, . -> !DOT!, , -> !COMMA!, ; -> !SEMICOLON!
+  // * -> !STAR!, _ -> !UNDER!, . -> !DOT!, , -> !COMMA!, ; -> !SEMICOLON!s
+  //  -> !SPACE!
   const expression1 = expression.replace(/!BS!/g, '\\');
   const expression2 = expression1.replace(/!RPAR2!/g, '}');
   const expression3 = expression2.replace(/!LPAR2!/g, '{');
@@ -43,7 +44,8 @@ const translateExpression = (expression) => {
   const expression26 = expression25.replace(/!DOT!/g, '.');
   const expression27 = expression26.replace(/!COMMA!/g, ',');
   const expression28 = expression27.replace(/!SEMICOLON!/g, ';');
-  return expression28;
+  const expression29 = expression28.replace(/!SPACE!/g, ' ');
+  return expression29;
 };
 
 const translateExpressionBack = (expression) => {
@@ -75,7 +77,8 @@ const translateExpressionBack = (expression) => {
   const expression26 = expression25.replace(/\./g, '!DOT!');
   const expression27 = expression26.replace(/,/g, '!COMMA!');
   const expression28 = expression27.replace(/;/g, '!SEMICOLON!');
-  return expression28;
+  const expression29 = expression28.replace(/ /g, '!SPACE!');
+  return expression29;
 };
 
 const translateBackLatexList = (latexList) => {
