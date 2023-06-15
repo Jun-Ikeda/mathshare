@@ -15,7 +15,7 @@ const translateExpression = (expression) => {
   // | -> !BAR!, ` -> !BQUOTE!, : -> !COLON!, ? -> !QMARK!, / -> !SLASH!, @ -> !AT!
   // $ -> !DOLLAR!, & -> !AMP!, ~ -> !TILDE!, = -> !EQ!, + -> !PLUS!, - -> !MINUS!
   // * -> !STAR!, _ -> !UNDER!, . -> !DOT!, , -> !COMMA!, ; -> !SEMICOLON!s
-  //  -> !SPACE!
+  //  -> !SPACE!, ' -> !SQUOTE!
   const expression1 = expression.replace(/!BS!/g, '\\');
   const expression2 = expression1.replace(/!RPAR2!/g, '}');
   const expression3 = expression2.replace(/!LPAR2!/g, '{');
@@ -45,7 +45,8 @@ const translateExpression = (expression) => {
   const expression27 = expression26.replace(/!COMMA!/g, ',');
   const expression28 = expression27.replace(/!SEMICOLON!/g, ';');
   const expression29 = expression28.replace(/!SPACE!/g, ' ');
-  return expression29;
+  const expression30 = expression29.replace(/!SQUOTE!/g, '\'');
+  return expression30;
 };
 
 const translateExpressionBack = (expression) => {
@@ -78,13 +79,14 @@ const translateExpressionBack = (expression) => {
   const expression27 = expression26.replace(/,/g, '!COMMA!');
   const expression28 = expression27.replace(/;/g, '!SEMICOLON!');
   const expression29 = expression28.replace(/ /g, '!SPACE!');
-  return expression29;
+  const expression30 = expression29.replace(/'/g, '!SQUOTE!');
+  return expression30;
 };
 
 const translateBackLatexList = (latexList) => {
   const lastIndex = latexList.length - [...latexList].reverse().findIndex((item) => item !== '') - 1;
   const nonEmptyLatexList = latexList.slice(0, lastIndex + 1);
-  const latex = nonEmptyLatexList.join('\\n');
+  const latex = nonEmptyLatexList.join('\\RETURN');
   const expression = translateExpressionBack(latex);
   return expression;
 };
@@ -113,7 +115,7 @@ function Main() {
   const query = new URLSearchParams(search);
   const expression = translateExpression(query.get('expression') || '');
   React.useEffect(() => {
-    const expressionArray = expression.split('\\n');
+    const expressionArray = expression.split('\\RETURN');
     const expressionArray100 = expressionArray.length < 100
       ? expressionArray.concat(Array(100 - expressionArray.length).fill(''))
       : expressionArray.slice(0, 100);
